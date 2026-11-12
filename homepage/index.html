@@ -21,6 +21,9 @@
       --rule: #e3e6ea;
       --accent: #1d4f91;
       --accent-soft: #edf2f9;
+      --panel: #f4f7fb;
+      --pre: #8a5a12;
+      --pre-soft: #fbf3e4;
       --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Noto Serif SC", "Songti SC", serif;
       --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     }
@@ -32,6 +35,9 @@
         --rule: #2b3139;
         --accent: #8db4f2;
         --accent-soft: #1d2836;
+        --panel: #1a1f26;
+        --pre: #e2b36b;
+        --pre-soft: #2b2416;
       }
     }
 
@@ -48,8 +54,8 @@
       text-rendering: optimizeLegibility;
     }
     .layout {
-      max-width: 1120px; margin: 0 auto; padding: 88px 48px 48px;
-      display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 80px;
+      max-width: 1140px; margin: 0 auto; padding: 64px 48px 48px;
+      display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 72px;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -57,12 +63,14 @@
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
     /* Profile sidebar */
-    .profile { position: sticky; top: 88px; align-self: start; }
-    .portrait { width: 176px; height: 176px; border-radius: 50%; display: block; object-fit: cover; margin-bottom: 26px; }
+    .profile { position: sticky; top: 64px; align-self: start; background: var(--panel); border-radius: 16px; padding: 32px 28px 28px; }
+    .portrait { width: 168px; height: 168px; border-radius: 50%; display: block; object-fit: cover; margin-bottom: 24px; box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--rule); }
     .profile h1 { font-size: 2.2rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 10px; }
     .profile .role { color: var(--muted); margin: 0 0 22px; line-height: 1.5; }
     .profile ul { list-style: none; margin: 0; padding: 0; }
-    .contact li { margin-bottom: 4px; }
+    .contact li { margin-bottom: 6px; display: flex; align-items: center; gap: 9px; }
+    .contact svg { width: 16px; height: 16px; flex: none; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .contact a { word-break: break-all; }
     .profile .toc { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--rule); }
     .toc li { margin-bottom: 4px; }
     .toc a { color: var(--muted); }
@@ -70,34 +78,46 @@
     .sep { color: var(--rule); margin: 0 0.55em; }
 
     /* Main column */
-    .about { font-size: 1.12rem; line-height: 1.65; }
+    .about { font-size: 1.12rem; line-height: 1.65; padding-top: 24px; }
     .about p { margin: 0 0 16px; }
     .about p:last-child { margin-bottom: 0; }
 
     /* Sections */
     section { margin-top: 64px; scroll-margin-top: 32px; }
     section.about { margin-top: 0; }
-    h2 { scroll-margin-top: 32px; font-size: 1.3rem; font-weight: 400; margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+    h2 { scroll-margin-top: 32px; font-size: 1.35rem; font-weight: 400; margin: 0 0 22px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); position: relative; }
+    h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 44px; height: 2px; background: var(--accent); }
 
-    .news { list-style: none; margin: 0; padding: 0; }
-    .news li { display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; margin-bottom: 10px; }
-    .news time { color: var(--muted); }
+    .news { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--accent-soft); }
+    .news li { position: relative; display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; padding-bottom: 14px; }
+    .news li:last-child { padding-bottom: 0; }
+    .news li::before { content: ""; position: absolute; left: -28px; top: 0.55em; width: 10px; height: 10px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); }
+    .news time { color: var(--accent); font-variant-numeric: tabular-nums; }
 
-    .interests { margin: 0; }
-    .interests dt { font-weight: 700; }
-    .interests dd { margin: 0 0 14px; color: var(--muted); }
+    .interests { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .interests li { background: var(--panel); border-radius: 12px; padding: 20px 20px 18px; }
+    .interests svg { width: 30px; height: 30px; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; display: block; margin-bottom: 12px; }
+    .interests h3 { font-size: 1rem; font-weight: 700; line-height: 1.35; margin: 0 0 6px; }
+    .interests p { margin: 0; color: var(--muted); font-size: 0.93rem; line-height: 1.55; }
 
     /* Publications */
     .paper { display: grid; grid-template-columns: 230px 1fr; gap: 30px; align-items: start; }
-    .paper + .paper { margin-top: 40px; }
+    .paper + .paper { margin-top: 18px; }
+    .paper { padding: 18px; margin: 0 -18px; border-radius: 12px; transition: background-color 0.2s; }
+    .paper:hover { background: var(--panel); }
+    @media (prefers-reduced-motion: reduce) { .paper { transition: none; } }
     .teaser { width: 230px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); display: block; }
     .paper > div { min-width: 0; }
     .paper-title { font-weight: 700; color: var(--ink); line-height: 1.4; display: inline-block; margin-bottom: 4px; }
     .paper-title:hover { color: var(--accent); }
     .authors, .venue { margin: 0; }
     .authors strong { font-weight: 700; }
-    .venue { font-style: italic; color: var(--muted); }
-    .paper-links { margin: 8px 0 0; }
+    .venue { font-style: italic; color: var(--muted); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .badge { font-style: normal; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.02em; padding: 1px 9px; border-radius: 4px; background: var(--accent); color: var(--paper); }
+    .badge.pre { background: var(--pre-soft); color: var(--pre); }
+    .paper-links { margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .paper-links a, .paper-links .linkish { font-size: 0.86rem; line-height: 1.5; padding: 2px 13px; border: 1px solid var(--rule); border-radius: 999px; color: var(--accent); }
+    .paper-links a:hover, .paper-links .linkish:hover, .paper-links .linkish[aria-expanded="true"] { border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
     .linkish {
       font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer;
     }
@@ -118,12 +138,13 @@
     footer { margin-top: 80px; font-size: 0.85rem; color: var(--muted); }
 
     @media (max-width: 960px) {
-      .layout { display: block; max-width: 760px; padding: 64px 28px 44px; }
-      .profile { position: static; display: grid; grid-template-columns: 150px 1fr; column-gap: 36px; align-items: center; margin-bottom: 40px; }
+      .layout { display: block; max-width: 760px; padding: 40px 28px 44px; }
+      .profile { position: static; display: grid; grid-template-columns: 150px 1fr; column-gap: 32px; align-items: center; margin-bottom: 36px; }
+      .about { padding-top: 0; }
+      .contact li { display: inline-flex; margin: 0 18px 4px 0; }
       .portrait { width: 150px; height: 150px; margin: 0; grid-row: span 3; }
       .profile h1 { margin-top: 0; }
       .profile .role { margin-bottom: 12px; }
-      .contact li { display: inline; margin: 0 18px 0 0; }
       .profile .toc { display: none; }
     }
     @media (max-width: 640px) {
@@ -137,6 +158,9 @@
       .news li { grid-template-columns: 1fr; gap: 0; margin-bottom: 14px; }
       .paper { grid-template-columns: 1fr; gap: 16px; }
       .teaser { width: 100%; max-width: 380px; }
+      .profile { padding: 24px 20px; }
+      .interests { grid-template-columns: 1fr; }
+      .paper { margin: 0 -12px; padding: 12px; }
     }
   </style>
 </head>
@@ -150,8 +174,8 @@
     <h1>Xing Li</h1>
     <p class="role">M.S. student<br><a href="https://www.dlmu.edu.cn/">Dalian Maritime University</a></p>
     <ul class="contact">
-      <li><a href="mailto:lllxxx@dlmu.edu.cn">lllxxx@dlmu.edu.cn</a></li>
-      <li><a href="https://github.com/lllxxxxx">GitHub</a></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><a href="mailto:lllxxx@dlmu.edu.cn">lllxxx@dlmu.edu.cn</a></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg><a href="https://github.com/lllxxxxx">GitHub</a></li>
     </ul>
     <nav aria-label="Sections">
       <ul class="toc">
@@ -179,14 +203,23 @@
 
   <section aria-labelledby="research">
     <h2 id="research">Research interests</h2>
-    <dl class="interests">
-      <dt>Multimodal stance understanding</dt>
-      <dd>Inferring a speaker's attitude toward a target from text, conversations, speech, and memes.</dd>
-      <dt>Memory for LLM agents</dt>
-      <dd>Helping agents store, retrieve, and use long-term memory across extended interactions.</dd>
-      <dt>Vision-language navigation and embodied AI</dt>
-      <dd>Grounding natural-language instructions in visual perception and action.</dd>
-    </dl>
+    <ul class="interests">
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 7h15a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-8l-5 4v-4H5a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3z"/><path d="M9 13.5h3M10.5 12v3M15 13.5h3"/><path d="M26 11h1a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-1v3l-4-3"/></svg>
+        <h3>Multimodal stance understanding</h3>
+        <p>Inferring a speaker's attitude toward a target from text, conversations, speech, and memes.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 29 10.5 16 17 3 10.5z"/><path d="M3 16l13 6.5L29 16"/><path d="M3 21.5 16 28l13-6.5"/></svg>
+        <h3>Memory for LLM agents</h3>
+        <p>Helping agents store, retrieve, and use long-term memory across extended interactions.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="m21.5 10.5-3.6 7.4-7.4 3.6 3.6-7.4z"/><circle cx="16" cy="16" r="1" fill="currentColor"/></svg>
+        <h3>Vision-language navigation and embodied AI</h3>
+        <p>Grounding natural-language instructions in visual perception and action.</p>
+      </li>
+    </ul>
   </section>
 
   <section aria-labelledby="publications">
@@ -223,9 +256,9 @@
       <div>
         <a class="paper-title" href="https://aclanthology.org/2026.findings-emnlp.1129/">StanceAgent-R1: Agentic Reinforcement Learning for Zero-Shot Conversational Stance Detection</a>
         <p class="authors"><strong>Xing Li</strong>, Jinzhong Ning, Yijia Zhang</p>
-        <p class="venue">Findings of EMNLP 2026</p>
+        <p class="venue"><span class="badge">EMNLP</span>Findings of EMNLP 2026</p>
         <p class="paper-links">
-          <a href="https://aclanthology.org/2026.findings-emnlp.1129/">Paper</a><span class="sep" aria-hidden="true">/</span><a href="https://aclanthology.org/2026.findings-emnlp.1129.pdf">PDF</a><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="sa-abs">Abstract</button><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="sa-bib">BibTeX</button>
+          <a href="https://aclanthology.org/2026.findings-emnlp.1129/">Paper</a><a href="https://aclanthology.org/2026.findings-emnlp.1129.pdf">PDF</a><button class="linkish" type="button" aria-expanded="false" aria-controls="sa-abs">Abstract</button><button class="linkish" type="button" aria-expanded="false" aria-controls="sa-bib">BibTeX</button>
         </p>
         <div class="panel" id="sa-abs" hidden>
           <p class="abstract">Conversational stance detection asks whether an utterance favors or opposes a target given its dialogue context. StanceAgent-R1 is an agentic reinforcement learning framework that decides, for each instance, whether to select evidence paths from the dialogue, elicit background knowledge, or both. It is warm-started on expert reasoning trajectories collected with rejection sampling, then trained with a reward for correct, well-structured, and route-consistent reasoning, and reaches state-of-the-art results on ZS-CSD, MT-CSD, and C-MTCSD.</p>
@@ -274,9 +307,9 @@
       <div>
         <a class="paper-title" href="https://arxiv.org/abs/2610.11978">Specialized Decision Models vs. General-Purpose LLMs: Benchmarking Jev Across Knowledge, Reasoning, and Multilingual Tasks</a>
         <p class="authors"><strong>Xing Li</strong>, Qingcheng Chang, Jinzhong Ning, Changfeng Xu, Shenlong Zhang, Yijia Zhang, Ling Luo, Hongfei Lin</p>
-        <p class="venue">arXiv preprint, 2026</p>
+        <p class="venue"><span class="badge pre">arXiv</span>Preprint, 2026</p>
         <p class="paper-links">
-          <a href="https://arxiv.org/abs/2610.11978">arXiv</a><span class="sep" aria-hidden="true">/</span><a href="https://arxiv.org/pdf/2610.11978">PDF</a><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jb-abs">Abstract</button><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jb-bib">BibTeX</button>
+          <a href="https://arxiv.org/abs/2610.11978">arXiv</a><a href="https://arxiv.org/pdf/2610.11978">PDF</a><button class="linkish" type="button" aria-expanded="false" aria-controls="jb-abs">Abstract</button><button class="linkish" type="button" aria-expanded="false" aria-controls="jb-bib">BibTeX</button>
         </p>
         <div class="panel" id="jb-abs" hidden>
           <p class="abstract">Jev is a "System One" decision model that picks an answer from given options instead of generating text. We evaluate it on 13 multiple-choice benchmarks covering knowledge, reasoning, and multilingual understanding, against 19 LLMs in frontier, representative, and small tiers. Jev matches frontier models on knowledge and commonsense tasks and scores best on MMLU-Redux and ARC-Challenge, but trails all 19 LLMs on MathQA, suggesting such models suit knowledge-based decisions more than multi-step calculation.</p>
@@ -329,9 +362,9 @@
       <div>
         <a class="paper-title" href="https://arxiv.org/abs/2610.11901">Can Decision Models Understand Stance? Evaluating Jev Against General-Purpose LLMs</a>
         <p class="authors"><strong>Xing Li</strong>, Jinzhong Ning, Yijia Zhang, Liang Yang, Hongfei Lin</p>
-        <p class="venue">arXiv preprint, 2026</p>
+        <p class="venue"><span class="badge pre">arXiv</span>Preprint, 2026</p>
         <p class="paper-links">
-          <a href="https://arxiv.org/abs/2610.11901">arXiv</a><span class="sep" aria-hidden="true">/</span><a href="https://arxiv.org/pdf/2610.11901">PDF</a><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jev-abs">Abstract</button><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jev-bib">BibTeX</button>
+          <a href="https://arxiv.org/abs/2610.11901">arXiv</a><a href="https://arxiv.org/pdf/2610.11901">PDF</a><button class="linkish" type="button" aria-expanded="false" aria-controls="jev-abs">Abstract</button><button class="linkish" type="button" aria-expanded="false" aria-controls="jev-bib">BibTeX</button>
         </p>
         <div class="panel" id="jev-abs" hidden>
           <p class="abstract">We evaluate Jev, a decision model that returns probability distributions over predefined options, on two stance detection datasets: VAST (English texts) and ZS-CSD (Chinese conversations). Compared with four general-purpose LLMs and two fine-tuned models, Jev performs on par with GPT-5.6 on VAST but falls behind stronger LLMs on ZS-CSD, especially in distinguishing favor from against.</p>
