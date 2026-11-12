@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xing Li</title>
+  <meta name="description" content="Xing Li is an M.S. student at Dalian Maritime University working on natural language processing and multimodal learning.">
+  <meta name="author" content="Xing Li">
+  <meta name="keywords" content="Xing Li, Dalian Maritime University, natural language processing, stance detection, multimodal learning, LLM agents, memory, vision-language navigation">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Xing Li">
+  <meta property="og:description" content="M.S. student at Dalian Maritime University working on natural language processing and multimodal learning.">
+  <meta property="og:url" content="https://lllxxxxx.github.io/">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231d4f91'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='white'%3EXL%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --paper: #ffffff;
+      --ink: #1f2328;
+      --muted: #5d6672;
+      --rule: #e3e6ea;
+      --accent: #1d4f91;
+      --accent-soft: #edf2f9;
+      --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Noto Serif SC", "Songti SC", serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #15181c;
+        --ink: #e6e8eb;
+        --muted: #9aa3ad;
+        --rule: #2b3139;
+        --accent: #8db4f2;
+        --accent-soft: #1d2836;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 17.5px;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 80px 28px 48px; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    /* Intro */
+    .intro { display: grid; grid-template-columns: 160px 1fr; gap: 40px; align-items: start; }
+    .portrait { width: 160px; height: 160px; border-radius: 50%; display: block; object-fit: cover; }
+    .intro h1 { font-size: 2.55rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin: 6px 0 6px; }
+    .intro .role { color: var(--muted); margin: 0 0 18px; }
+    .intro p { margin: 0 0 14px; }
+    .contact { margin-top: 18px; }
+    .sep { color: var(--rule); margin: 0 0.55em; }
+
+    /* Sections */
+    section { margin-top: 60px; }
+    h2 { font-size: 1.3rem; font-weight: 400; margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+
+    .news { list-style: none; margin: 0; padding: 0; }
+    .news li { display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; margin-bottom: 10px; }
+    .news time { color: var(--muted); }
+
+    .interests { margin: 0; }
+    .interests dt { font-weight: 700; }
+    .interests dd { margin: 0 0 14px; color: var(--muted); }
+
+    /* Publications */
+    .paper { display: grid; grid-template-columns: 230px 1fr; gap: 30px; align-items: start; }
+    .paper + .paper { margin-top: 40px; }
+    .teaser { width: 230px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); display: block; }
+    .paper > div { min-width: 0; }
+    .paper-title { font-weight: 700; color: var(--ink); line-height: 1.4; display: inline-block; margin-bottom: 4px; }
+    .paper-title:hover { color: var(--accent); }
+    .authors, .venue { margin: 0; }
+    .authors strong { font-weight: 700; }
+    .venue { font-style: italic; color: var(--muted); }
+    .paper-links { margin: 8px 0 0; }
+    .linkish {
+      font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer;
+    }
+    .linkish:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .panel { margin-top: 12px; }
+    .panel[hidden] { display: none; }
+    .abstract { font-size: 0.94rem; color: var(--muted); border-left: 2px solid var(--accent); padding-left: 14px; margin: 0; }
+    .bib { position: relative; }
+    .bib pre {
+      margin: 0; padding: 14px 16px; background: var(--accent-soft); border-radius: 6px;
+      font-family: var(--mono); font-size: 0.78rem; line-height: 1.5; overflow-x: auto; color: var(--ink);
+    }
+    .copy {
+      position: absolute; top: 8px; right: 8px; font: 0.8rem var(--serif); color: var(--accent);
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 2px 10px; cursor: pointer;
+    }
+
+    footer { margin-top: 80px; font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      body { font-size: 17px; }
+      main { padding: 48px 20px 40px; }
+      .intro { grid-template-columns: 1fr; gap: 22px; }
+      .portrait { width: 116px; height: 116px; }
+      .intro h1 { font-size: 2.15rem; }
+      section { margin-top: 48px; }
+      .news li { grid-template-columns: 1fr; gap: 0; margin-bottom: 14px; }
+      .paper { grid-template-columns: 1fr; gap: 16px; }
+      .teaser { width: 100%; max-width: 380px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header class="intro">
+    <!-- To use a photo: put it next to this file as photo.jpg and replace the <svg> below with
+         <img class="portrait" src="photo.jpg" alt="Xing Li"> -->
+    <svg class="portrait" viewBox="0 0 160 160" role="img" aria-label="Xing Li">
+      <circle cx="80" cy="80" r="80" fill="var(--accent-soft)"/>
+      <text x="80" y="96" text-anchor="middle" font-family="Charter, Georgia, serif" font-size="50" fill="var(--accent)">XL</text>
+    </svg>
+    <div>
+      <h1>Xing Li</h1>
+      <p class="role">M.S. student, <a href="https://www.dlmu.edu.cn/">Dalian Maritime University</a></p>
+      <p>I work on natural language processing and multimodal learning. I'm interested in how models understand people's attitudes, keep track of what matters over long interactions, and turn language into action in the visual world.</p>
+      <p>I'm happy to talk about research and collaborations. Email is the best way to reach me.</p>
+      <p class="contact">
+        <a href="mailto:lllxxx@dlmu.edu.cn">Email</a><span class="sep" aria-hidden="true">/</span><a href="https://github.com/lllxxxxx">GitHub</a>
+      </p>
+    </div>
+  </header>
+
+  <section aria-labelledby="news">
+    <h2 id="news">News</h2>
+    <ul class="news">
+      <li><time datetime="2026-10">Oct 2026</time><span><a href="https://aclanthology.org/2026.findings-emnlp.1129/">StanceAgent-R1</a> is published in Findings of EMNLP 2026.</span></li>
+      <li><time datetime="2026-10-08">Oct 2026</time><span>Two papers evaluating the decision model Jev are on arXiv: one on <a href="https://arxiv.org/abs/2610.11901">stance detection</a>, one on <a href="https://arxiv.org/abs/2610.11978">knowledge, reasoning, and multilingual tasks</a>.</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="research">
+    <h2 id="research">Research interests</h2>
+    <dl class="interests">
+      <dt>Multimodal stance understanding</dt>
+      <dd>Inferring a speaker's attitude toward a target from text, conversations, speech, and memes.</dd>
+      <dt>Memory for LLM agents</dt>
+      <dd>Helping agents store, retrieve, and use long-term memory across extended interactions.</dd>
+      <dt>Vision-language navigation and embodied AI</dt>
+      <dd>Grounding natural-language instructions in visual perception and action.</dd>
+    </dl>
+  </section>
+
+  <section aria-labelledby="publications">
+    <h2 id="publications">Publications</h2>
+
+    <article class="paper">
+      <svg class="teaser" viewBox="0 0 320 200" role="img"
+           aria-label="An agent reads the dialogue and, for each instance, routes to evidence-path selection, knowledge elicitation, or both.">
+        <defs>
+          <marker id="arr-sa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+          </marker>
+        </defs>
+        <g font-family="Charter, Georgia, serif" text-anchor="middle">
+          <!-- dialogue -->
+          <rect x="12" y="34" width="92" height="132" rx="8" fill="var(--paper)" stroke="var(--rule)" stroke-width="1.5"/>
+          <rect x="22" y="48" width="56" height="18" rx="9" fill="var(--accent-soft)"/>
+          <rect x="38" y="76" width="56" height="18" rx="9" fill="var(--accent-soft)"/>
+          <rect x="22" y="104" width="56" height="18" rx="9" fill="var(--accent-soft)"/>
+          <rect x="38" y="132" width="56" height="18" rx="9" fill="var(--accent)" opacity="0.85"/>
+          <path d="M104 100 H130" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-sa)"/>
+          <!-- agent -->
+          <rect x="134" y="74" width="72" height="52" rx="8" fill="var(--accent)"/>
+          <text x="170" y="106" font-size="19" fill="var(--paper)">Agent</text>
+          <!-- routes -->
+          <path d="M206 92 C 218 92, 218 52, 228 52" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-sa)"/>
+          <path d="M206 108 C 218 108, 218 148, 228 148" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-sa)"/>
+          <rect x="232" y="30" width="82" height="44" rx="8" fill="var(--paper)" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="273" y="57" font-size="14.5" fill="var(--accent)">evidence</text>
+          <rect x="232" y="126" width="82" height="44" rx="8" fill="var(--paper)" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="273" y="153" font-size="14.5" fill="var(--accent)">knowledge</text>
+        </g>
+      </svg>
+      <div>
+        <a class="paper-title" href="https://aclanthology.org/2026.findings-emnlp.1129/">StanceAgent-R1: Agentic Reinforcement Learning for Zero-Shot Conversational Stance Detection</a>
+        <p class="authors"><strong>Xing Li</strong>, Jinzhong Ning, Yijia Zhang</p>
+        <p class="venue">Findings of EMNLP 2026</p>
+        <p class="paper-links">
+          <a href="https://aclanthology.org/2026.findings-emnlp.1129/">Paper</a><span class="sep" aria-hidden="true">/</span><a href="https://aclanthology.org/2026.findings-emnlp.1129.pdf">PDF</a><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="sa-abs">Abstract</button><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="sa-bib">BibTeX</button>
+        </p>
+        <div class="panel" id="sa-abs" hidden>
+          <p class="abstract">Conversational stance detection asks whether an utterance favors or opposes a target given its dialogue context. StanceAgent-R1 is an agentic reinforcement learning framework that decides, for each instance, whether to select evidence paths from the dialogue, elicit background knowledge, or both. It is warm-started on expert reasoning trajectories collected with rejection sampling, then trained with a reward for correct, well-structured, and route-consistent reasoning, and reaches state-of-the-art results on ZS-CSD, MT-CSD, and C-MTCSD.</p>
+        </div>
+        <div class="panel bib" id="sa-bib" hidden>
+          <pre>@inproceedings{li-etal-2026-stanceagent,
+  title     = {StanceAgent-R1: Agentic Reinforcement Learning for Zero-Shot Conversational Stance Detection},
+  author    = {Li, Xing and Ning, Jinzhong and Zhang, Yijia},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026},
+  year      = {2026},
+  address   = {Budapest, Hungary},
+  publisher = {Association for Computational Linguistics},
+  pages     = {23895--23919},
+  doi       = {10.18653/2026.findings-emnlp.1129},
+  url       = {https://aclanthology.org/2026.findings-emnlp.1129/}
+}</pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="paper">
+      <svg class="teaser" viewBox="0 0 320 200" role="img"
+           aria-label="Thirteen multiple-choice benchmarks in knowledge, reasoning, and multilingual understanding are given to Jev and to 19 general-purpose LLMs.">
+        <defs>
+          <marker id="arr-jb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+          </marker>
+        </defs>
+        <g font-family="Charter, Georgia, serif" text-anchor="middle">
+          <rect x="12" y="24" width="112" height="40" rx="7" fill="var(--paper)" stroke="var(--rule)" stroke-width="1.5"/>
+          <text x="68" y="50" font-size="16" fill="var(--ink)">knowledge</text>
+          <rect x="12" y="80" width="112" height="40" rx="7" fill="var(--paper)" stroke="var(--rule)" stroke-width="1.5"/>
+          <text x="68" y="106" font-size="16" fill="var(--ink)">reasoning</text>
+          <rect x="12" y="136" width="112" height="40" rx="7" fill="var(--paper)" stroke="var(--rule)" stroke-width="1.5"/>
+          <text x="68" y="162" font-size="16" fill="var(--ink)">multilingual</text>
+          <path d="M124 44 H146 M124 100 H146 M124 156 H146 M146 44 V156" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+          <path d="M146 62 H178" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-jb)"/>
+          <path d="M146 138 H178" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-jb)"/>
+          <rect x="182" y="38" width="126" height="48" rx="7" fill="var(--accent)"/>
+          <text x="245" y="68" font-size="19" fill="var(--paper)">Jev</text>
+          <rect x="182" y="114" width="126" height="48" rx="7" fill="var(--paper)" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="245" y="144" font-size="18" fill="var(--accent)">19 LLMs</text>
+        </g>
+      </svg>
+      <div>
+        <a class="paper-title" href="https://arxiv.org/abs/2610.11978">Specialized Decision Models vs. General-Purpose LLMs: Benchmarking Jev Across Knowledge, Reasoning, and Multilingual Tasks</a>
+        <p class="authors"><strong>Xing Li</strong>, Qingcheng Chang, Jinzhong Ning, Changfeng Xu, Shenlong Zhang, Yijia Zhang, Ling Luo, Hongfei Lin</p>
+        <p class="venue">arXiv preprint, 2026</p>
+        <p class="paper-links">
+          <a href="https://arxiv.org/abs/2610.11978">arXiv</a><span class="sep" aria-hidden="true">/</span><a href="https://arxiv.org/pdf/2610.11978">PDF</a><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jb-abs">Abstract</button><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jb-bib">BibTeX</button>
+        </p>
+        <div class="panel" id="jb-abs" hidden>
+          <p class="abstract">Jev is a "System One" decision model that picks an answer from given options instead of generating text. We evaluate it on 13 multiple-choice benchmarks covering knowledge, reasoning, and multilingual understanding, against 19 LLMs in frontier, representative, and small tiers. Jev matches frontier models on knowledge and commonsense tasks and scores best on MMLU-Redux and ARC-Challenge, but trails all 19 LLMs on MathQA, suggesting such models suit knowledge-based decisions more than multi-step calculation.</p>
+        </div>
+        <div class="panel bib" id="jb-bib" hidden>
+          <pre>@article{li2026benchmarking,
+  title   = {Specialized Decision Models vs. General-Purpose LLMs: Benchmarking Jev Across Knowledge, Reasoning, and Multilingual Tasks},
+  author  = {Li, Xing and Chang, Qingcheng and Ning, Jinzhong and Xu, Changfeng and Zhang, Shenlong and Zhang, Yijia and Luo, Ling and Lin, Hongfei},
+  journal = {arXiv preprint arXiv:2610.11978},
+  year    = {2026}
+}</pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="paper">
+      <svg class="teaser" viewBox="0 0 320 200" role="img"
+           aria-label="VAST and ZS-CSD are given to both Jev and general-purpose LLMs; Jev returns a probability distribution over stance labels, while an LLM writes the label as text.">
+        <defs>
+          <marker id="arr-js" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+          </marker>
+        </defs>
+        <g font-family="Charter, Georgia, serif" text-anchor="middle">
+          <!-- datasets -->
+          <rect x="14" y="26" width="86" height="50" rx="7" fill="var(--paper)" stroke="var(--rule)" stroke-width="1.5"/>
+          <text x="57" y="58.5" font-size="21" fill="var(--ink)">VAST</text>
+          <rect x="14" y="124" width="86" height="50" rx="7" fill="var(--paper)" stroke="var(--rule)" stroke-width="1.5"/>
+          <text x="57" y="156" font-size="18.5" fill="var(--ink)">ZS-CSD</text>
+          <!-- bus -->
+          <path d="M100 51 H122 V149 H100" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+          <path d="M122 51 H142" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-js)"/>
+          <path d="M122 149 H142" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-js)"/>
+          <!-- models -->
+          <rect x="146" y="26" width="72" height="50" rx="7" fill="var(--accent)"/>
+          <text x="182" y="58.5" font-size="22" fill="var(--paper)">Jev</text>
+          <rect x="146" y="124" width="72" height="50" rx="7" fill="var(--paper)" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="182" y="156.5" font-size="20" fill="var(--accent)">LLMs</text>
+          <path d="M218 51 H238" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-js)"/>
+          <path d="M218 149 H238" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr-js)"/>
+          <!-- outputs: probabilities vs. text -->
+          <rect x="244" y="30" width="62" height="11" rx="2" fill="var(--accent)"/>
+          <rect x="244" y="46" width="22" height="11" rx="2" fill="var(--accent)" opacity="0.55"/>
+          <rect x="244" y="62" width="10" height="11" rx="2" fill="var(--accent)" opacity="0.3"/>
+          <rect x="240" y="128" width="72" height="42" rx="12" fill="var(--accent-soft)"/>
+          <text x="276" y="154" font-size="17" font-style="italic" fill="var(--ink)">against</text>
+        </g>
+      </svg>
+      <div>
+        <a class="paper-title" href="https://arxiv.org/abs/2610.11901">Can Decision Models Understand Stance? Evaluating Jev Against General-Purpose LLMs</a>
+        <p class="authors"><strong>Xing Li</strong>, Jinzhong Ning, Yijia Zhang, Liang Yang, Hongfei Lin</p>
+        <p class="venue">arXiv preprint, 2026</p>
+        <p class="paper-links">
+          <a href="https://arxiv.org/abs/2610.11901">arXiv</a><span class="sep" aria-hidden="true">/</span><a href="https://arxiv.org/pdf/2610.11901">PDF</a><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jev-abs">Abstract</button><span class="sep" aria-hidden="true">/</span><button class="linkish" type="button" aria-expanded="false" aria-controls="jev-bib">BibTeX</button>
+        </p>
+        <div class="panel" id="jev-abs" hidden>
+          <p class="abstract">We evaluate Jev, a decision model that returns probability distributions over predefined options, on two stance detection datasets: VAST (English texts) and ZS-CSD (Chinese conversations). Compared with four general-purpose LLMs and two fine-tuned models, Jev performs on par with GPT-5.6 on VAST but falls behind stronger LLMs on ZS-CSD, especially in distinguishing favor from against.</p>
+        </div>
+        <div class="panel bib" id="jev-bib" hidden>
+          <pre>@article{li2026jev,
+  title   = {Can Decision Models Understand Stance? Evaluating Jev Against General-Purpose LLMs},
+  author  = {Li, Xing and Ning, Jinzhong and Zhang, Yijia and Yang, Liang and Lin, Hongfei},
+  journal = {arXiv preprint arXiv:2610.11901},
+  year    = {2026}
+}</pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <p>Last updated November 2026. Layout inspired by <a href="https://jonbarron.info/">Jon Barron's website</a>.</p>
+  </footer>
+
+</main>
+<script>
+  document.querySelectorAll('button[aria-controls]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.hidden = open;
+    });
+  });
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.parentNode.querySelector('pre').textContent;
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { btn.textContent = 'Select and copy'; });
+      } else {
+        btn.textContent = 'Select and copy';
+      }
+    });
+  });
+</script>
+</body>
+</html>
