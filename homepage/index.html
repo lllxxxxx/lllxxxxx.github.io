@@ -47,24 +47,37 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
-    main { max-width: 760px; margin: 0 auto; padding: 80px 28px 48px; }
+    .layout {
+      max-width: 1120px; margin: 0 auto; padding: 88px 48px 48px;
+      display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 80px;
+    }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
-    /* Intro */
-    .intro { display: grid; grid-template-columns: 160px 1fr; gap: 40px; align-items: start; }
-    .portrait { width: 160px; height: 160px; border-radius: 50%; display: block; object-fit: cover; }
-    .intro h1 { font-size: 2.55rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin: 6px 0 6px; }
-    .intro .role { color: var(--muted); margin: 0 0 18px; }
-    .intro p { margin: 0 0 14px; }
-    .contact { margin-top: 18px; }
+    /* Profile sidebar */
+    .profile { position: sticky; top: 88px; align-self: start; }
+    .portrait { width: 176px; height: 176px; border-radius: 50%; display: block; object-fit: cover; margin-bottom: 26px; }
+    .profile h1 { font-size: 2.2rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 10px; }
+    .profile .role { color: var(--muted); margin: 0 0 22px; line-height: 1.5; }
+    .profile ul { list-style: none; margin: 0; padding: 0; }
+    .contact li { margin-bottom: 4px; }
+    .profile .toc { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--rule); }
+    .toc li { margin-bottom: 4px; }
+    .toc a { color: var(--muted); }
+    .toc a:hover, .toc a[aria-current="true"] { color: var(--accent); }
     .sep { color: var(--rule); margin: 0 0.55em; }
 
+    /* Main column */
+    .about { font-size: 1.12rem; line-height: 1.65; }
+    .about p { margin: 0 0 16px; }
+    .about p:last-child { margin-bottom: 0; }
+
     /* Sections */
-    section { margin-top: 60px; }
-    h2 { font-size: 1.3rem; font-weight: 400; margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+    section { margin-top: 64px; scroll-margin-top: 32px; }
+    section.about { margin-top: 0; }
+    h2 { scroll-margin-top: 32px; font-size: 1.3rem; font-weight: 400; margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
 
     .news { list-style: none; margin: 0; padding: 0; }
     .news li { display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; margin-bottom: 10px; }
@@ -104,12 +117,22 @@
 
     footer { margin-top: 80px; font-size: 0.85rem; color: var(--muted); }
 
+    @media (max-width: 960px) {
+      .layout { display: block; max-width: 760px; padding: 64px 28px 44px; }
+      .profile { position: static; display: grid; grid-template-columns: 150px 1fr; column-gap: 36px; align-items: center; margin-bottom: 40px; }
+      .portrait { width: 150px; height: 150px; margin: 0; grid-row: span 3; }
+      .profile h1 { margin-top: 0; }
+      .profile .role { margin-bottom: 12px; }
+      .contact li { display: inline; margin: 0 18px 0 0; }
+      .profile .toc { display: none; }
+    }
     @media (max-width: 640px) {
       body { font-size: 17px; }
-      main { padding: 48px 20px 40px; }
-      .intro { grid-template-columns: 1fr; gap: 22px; }
-      .portrait { width: 116px; height: 116px; }
-      .intro h1 { font-size: 2.15rem; }
+      .layout { padding: 44px 20px 40px; }
+      .profile { display: block; }
+      .portrait { width: 112px; height: 112px; margin-bottom: 20px; }
+      .profile h1 { font-size: 2.05rem; }
+      .about { font-size: 1.04rem; }
       section { margin-top: 48px; }
       .news li { grid-template-columns: 1fr; gap: 0; margin-bottom: 14px; }
       .paper { grid-template-columns: 1fr; gap: 16px; }
@@ -118,25 +141,36 @@
   </style>
 </head>
 <body>
-<main>
+<div class="layout">
 
-  <header class="intro">
+  <aside class="profile">
     <!-- To use a photo: put it next to this file as photo.jpg and replace the <svg> below with
          <img class="portrait" src="photo.jpg" alt="Xing Li"> -->
     <svg class="portrait" viewBox="0 0 160 160" role="img" aria-label="Xing Li">
       <circle cx="80" cy="80" r="80" fill="var(--accent-soft)"/>
       <text x="80" y="96" text-anchor="middle" font-family="Charter, Georgia, serif" font-size="50" fill="var(--accent)">XL</text>
     </svg>
-    <div>
-      <h1>Xing Li</h1>
-      <p class="role">M.S. student, <a href="https://www.dlmu.edu.cn/">Dalian Maritime University</a></p>
-      <p>I work on natural language processing and multimodal learning. I'm interested in how models understand people's attitudes, keep track of what matters over long interactions, and turn language into action in the visual world.</p>
-      <p>I'm happy to talk about research and collaborations. Email is the best way to reach me.</p>
-      <p class="contact">
-        <a href="mailto:lllxxx@dlmu.edu.cn">Email</a><span class="sep" aria-hidden="true">/</span><a href="https://github.com/lllxxxxx">GitHub</a>
-      </p>
-    </div>
-  </header>
+    <h1>Xing Li</h1>
+    <p class="role">M.S. student<br><a href="https://www.dlmu.edu.cn/">Dalian Maritime University</a></p>
+    <ul class="contact">
+      <li><a href="mailto:lllxxx@dlmu.edu.cn">lllxxx@dlmu.edu.cn</a></li>
+      <li><a href="https://github.com/lllxxxxx">GitHub</a></li>
+    </ul>
+    <nav aria-label="Sections">
+      <ul class="toc">
+        <li><a href="#news">News</a></li>
+        <li><a href="#research">Research interests</a></li>
+        <li><a href="#publications">Publications</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+<main>
+
+  <section class="about" aria-label="About">
+    <p>I work on natural language processing and multimodal learning. I'm interested in how models understand people's attitudes, keep track of what matters over long interactions, and turn language into action in the visual world.</p>
+    <p>I'm happy to talk about research and collaborations. Email is the best way to reach me.</p>
+  </section>
 
   <section aria-labelledby="news">
     <h2 id="news">News</h2>
@@ -323,6 +357,7 @@
   </footer>
 
 </main>
+</div>
 <script>
   document.querySelectorAll('button[aria-controls]').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -332,6 +367,21 @@
       panel.hidden = open;
     });
   });
+  if ('IntersectionObserver' in window) {
+    var links = {};
+    document.querySelectorAll('.toc a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && links[e.target.id]) {
+          Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
+          links[e.target.id].setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    ['news', 'research', 'publications'].forEach(function (id) {
+      var h = document.getElementById(id); if (h) obs.observe(h.parentNode.id ? h.parentNode : h);
+    });
+  }
   document.querySelectorAll('.copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var text = btn.parentNode.querySelector('pre').textContent;
